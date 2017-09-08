@@ -1,44 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_gravity="left"
     tools:context="com.filho.filho.MainActivity">
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabDiscovery"
-        app:tabIndicatorHeight="5dp"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:background="@color/colorPrimary"
-        app:tabTextColor="@color/textColorSecondary"
-        app:tabSelectedTextColor="@color/textColorPrimary"
-        app:tabIndicatorColor="@color/textColorPrimary"
-        android:layout_height="wrap_content">
+        android:measureWithLargestChild="false"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <android.support.design.widget.TabItem
+        <include android:id="@+id/toolbar" layout="@layout/layout_toolbar"/>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabDiscovery"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Popular" />
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            app:tabIndicatorColor="@color/textColorPrimary"
+            app:tabIndicatorHeight="5dp"
+            app:tabSelectedTextColor="@color/textColorPrimary"
+            app:tabTextColor="@color/textColorSecondary">
 
-        <android.support.design.widget.TabItem
+            <android.support.design.widget.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Popular" />
+
+            <android.support.design.widget.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Ongoing" />
+
+            <android.support.design.widget.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Upcomiing" />
+
+        </android.support.design.widget.TabLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pagerDiscovery"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Ongoing" />
+            android:layout_height="match_parent"/>
 
-        <android.support.design.widget.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Upcomiing" />
+    </LinearLayout>
 
-    </android.support.design.widget.TabLayout>
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:backgroundTint="@color/textColorWhite"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/menu_header"
+        app:menu="@menu/menu" />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pagerDiscovery"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </android.support.v4.view.ViewPager>
-
-</LinearLayout>
+</android.support.v4.widget.DrawerLayout>

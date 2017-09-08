@@ -6,4 +6,8 @@
     <string name="title_activity_popular_fragment">PopularFragment</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_ongoing_fragment">OngoingFragment</string>
+    <string name="title_activity_coba">CobaActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>
