@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.filho.filho.helper.APIConstans;
 import com.filho.filho.helper.JSONParser;
 import com.filho.filho.helper.TmdbAPI;
 
@@ -21,7 +22,9 @@ import org.json.JSONObject;
 
 import java.util.Vector;
 
-public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener, MenuItem.OnMenuItemClickListener{
+public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener,
+        MenuItem.OnMenuItemClickListener,
+        ViewPager.OnPageChangeListener{
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         adapter = new PagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(2);
         tabLayout.addOnTabSelectedListener(this);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -69,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         menus = new Vector<MenuItem>();
         managesMenu((NavigationView) findViewById(R.id.navigation_view));
+
+        viewPager.addOnPageChangeListener(this);
     }
 
     public void managesMenu(NavigationView navigationView){
@@ -82,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         Vector<JSONObject> data = null;
         try {
             data = JSONParser.getArray(
-                        new JSONObject(TmdbAPI.getRequest("/genre/movie/list")
+                        new JSONObject(TmdbAPI.getRequest(APIConstans.CATEGORY)
                     ), "genres");
 
             for(JSONObject x : data){
@@ -90,7 +96,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             }
         }catch (Exception e){};
     }
-
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
@@ -109,8 +114,22 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
-        //Toast.makeText(MainActivity.this, "THIS IS A TEST" + menus.indexOf(item), Toast.LENGTH_SHORT).show();
         Toast.makeText(MainActivity.this, "test", Toast.LENGTH_SHORT).show();
         return false;
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        tabLayout.setScrollPosition(position, positionOffset, true);
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 }
