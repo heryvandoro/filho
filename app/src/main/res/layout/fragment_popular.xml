@@ -12,6 +12,7 @@
         android:id="@+id/listview_popular"
         android:layout_width="match_parent"
         android:scrollbars="none"
+        android:smoothScrollbar="true"
         android:layout_height="match_parent" />
 
 </LinearLayout>

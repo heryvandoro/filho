@@ -1,26 +1,40 @@
 package com.filho.filho;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
+import android.widget.ImageView;
+
+import com.filho.filho.helper.ImageDownloader;
+
+import java.io.InputStream;
+
 /**
  * Created by HeryVandoro on 9/8/2017.
  */
 
-public class Film {
-    private final String FILM_COVER_API_PATH = "https://image.tmdb.org/t/p/w300";
+public class Film{
+    private static final String FILM_COVER_API_PATH = "https://image.tmdb.org/t/p/w300";
 
     private int filmID;
     private String filmTitle;
     private String filmDate;
     private int filmRating;
-    private String filmCover;
+    private Bitmap filmCover;
+    private String filmCoverURL;
     private String filmOverview;
 
-    public Film(int filmID, String filmTitle, String filmDate, int filmRating, String filmCover, String filmOverview) {
+    public Film(int filmID, String filmTitle, String filmDate, int filmRating, String filmCoverURL, String filmOverview) {
         this.filmID = filmID;
         this.filmTitle = filmTitle;
         this.filmDate = filmDate;
         this.filmRating = filmRating;
-        this.filmCover = filmCover;
         this.filmOverview = filmOverview;
+        this.filmCoverURL = filmCoverURL;
+    }
+
+    public String getFilmCoverURL(){
+        return FILM_COVER_API_PATH+filmCoverURL;
     }
 
     public int getFilmID() {
@@ -55,11 +69,11 @@ public class Film {
         this.filmRating = filmRating;
     }
 
-    public String getFilmCover() {
-        return FILM_COVER_API_PATH+filmCover;
+    public Bitmap getFilmCover() {
+        return filmCover;
     }
 
-    public void setFilmCover(String filmCover) {
+    public void setFilmCover(Bitmap filmCover) {
         this.filmCover = filmCover;
     }
 
