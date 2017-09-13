@@ -26,7 +26,6 @@ public class FilmAdapter extends ArrayAdapter<Film> {
 
         this.context=context;
         this.films=films;
-        setNotifyOnChange(false);
     }
 
     @Override
@@ -53,7 +52,7 @@ public class FilmAdapter extends ArrayAdapter<Film> {
             holder.filmTitle.setText(film.getFilmTitle());
             holder.filmDate.setText(film.getFilmDate());
 
-            new ImageDownloader(holder.filmCover).execute(film.getFilmCoverURL());
+            new ImageDownloader(holder.filmCover).execute(film.getFilmCoverURL(300));
         }
         return view;
     }

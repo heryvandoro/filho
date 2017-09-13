@@ -19,7 +19,6 @@ import java.io.InputStream;
 public class ImageDownloader extends AsyncTask<String, Void, Bitmap>{
     ImageView imageView;
 
-
     public ImageDownloader(ImageView imageView) {
         this.imageView = imageView;
     }
@@ -36,9 +35,7 @@ public class ImageDownloader extends AsyncTask<String, Void, Bitmap>{
     }
 
     @Override
-    protected void onPreExecute() {
-        imageView.setImageResource(R.drawable.avatar);
-    }
+    protected void onPreExecute() { imageView.setImageResource(R.drawable.avatar); }
 
     protected void onPostExecute(Bitmap result) {
         imageView.setImageBitmap(result);

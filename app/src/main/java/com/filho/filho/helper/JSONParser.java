@@ -23,4 +23,12 @@ public class JSONParser {
         }
         return result;
     }
+
+    public static JSONObject getObject(String key){
+        JSONObject result = null;
+        try{
+            result = new JSONObject(key);
+        }catch (Exception e){ }
+        return result;
+    }
 }

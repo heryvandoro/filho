@@ -8,6 +8,8 @@ import java.util.Calendar;
 
 public class APIConstans {
     public static final String CATEGORY = "/genre/movie/list";
+    public static final String FILM_COVER = "https://image.tmdb.org/t/p/w";
     public static final String POPULAR_THIS_YEAR = "/discover/movie?sort_by=popularity.desc&primary_release_year="
-                                                    + Calendar.getInstance().get(Calendar.YEAR);;
+                                                    + Calendar.getInstance().get(Calendar.YEAR);
+    public static final String MOVIE_DETAIL = "/movie";
 }
