@@ -1,8 +1,6 @@
 package com.filho.filho;
 
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +20,7 @@ public class FilmAdapter extends ArrayAdapter<Film> {
     private AppCompatActivity context = null;
 
     public FilmAdapter(AppCompatActivity context, Vector<Film> films) {
-        super(context, R.layout.film_layout_1, films);
+        super(context, R.layout.film_item, films);
 
         this.context=context;
         this.films=films;
@@ -35,7 +33,7 @@ public class FilmAdapter extends ArrayAdapter<Film> {
 
         if(view==null){
             LayoutInflater inflater = context.getLayoutInflater();
-            view = inflater.inflate(R.layout.film_layout_1, null,true);
+            view = inflater.inflate(R.layout.film_item, null,true);
 
             holder = new ViewHolder();
             holder.filmTitle = (TextView) view.findViewById(R.id.filmTitle);

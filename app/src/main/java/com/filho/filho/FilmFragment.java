@@ -12,12 +12,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.filho.filho.helper.APIConstans;
-import com.filho.filho.helper.JSONParser;
-import com.filho.filho.helper.TmdbAPI;
-
-import org.json.JSONObject;
-
 import java.util.Vector;
 
 /**
@@ -38,8 +32,8 @@ public abstract class FilmFragment extends Fragment implements AdapterView.OnIte
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_film, container, false);
-        listView = (ListView) rootView.findViewById(R.id.listview_popular);
+        View rootView = inflater.inflate(R.layout.listview_film_layout, container, false);
+        listView = (ListView) rootView.findViewById(R.id.listview_film);
 
         loadFilmData();
 

@@ -1,5 +1,6 @@
 package com.filho.filho;
 
+import android.content.Intent;
 import android.os.StrictMode;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -33,8 +34,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private NavigationView navigationView;
-
-    private Vector<MenuItem> menus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +70,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         actionBarDrawerToggle.syncState();
 
-        menus = new Vector<MenuItem>();
         managesMenu((NavigationView) findViewById(R.id.navigation_view));
 
         viewPager.addOnPageChangeListener(this);
@@ -80,8 +78,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     public void managesMenu(NavigationView navigationView){
         Menu mainMenu = navigationView.getMenu();
 
-        menus.add(mainMenu.add("All Movies"));
-        menus.add(mainMenu.add("Help"));
+        mainMenu.add(0,Menu.NONE,Menu.NONE,"All Movies");
+        mainMenu.add(0,Menu.NONE,Menu.NONE,"Help");
 
         Menu subMenu = mainMenu.addSubMenu("Categories");
 
@@ -92,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                     ), "genres");
 
             for(JSONObject x : data){
-                menus.add(subMenu.add(x.getString("name")).setOnMenuItemClickListener(this));
+                subMenu.add(1,Integer.parseInt(x.getString("id")),Menu.NONE, x.getString("name")).setOnMenuItemClickListener(this);
             }
         }catch (Exception e){};
     }
@@ -114,7 +112,12 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
-        Toast.makeText(MainActivity.this, "test", Toast.LENGTH_SHORT).show();
+        drawerLayout.closeDrawers();
+        Intent i = new Intent(this, CategoryActivity.class);
+        //Toast.makeText(this, item.getItemId()+"", Toast.LENGTH_SHORT).show();
+        i.putExtra("category_id", item.getItemId());
+        i.putExtra("category_name", item.getTitle());
+        startActivity(i);
         return false;
     }
 

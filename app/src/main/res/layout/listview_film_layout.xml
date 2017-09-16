@@ -5,11 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="15dp"
-    android:paddingBottom="15dp"
-    tools:context="com.filho.filho.PopularFragment">
+    android:paddingBottom="15dp">
 
     <ListView
-        android:id="@+id/listview_popular"
+        android:id="@+id/listview_film"
         android:layout_width="match_parent"
         android:scrollbars="none"
         android:smoothScrollbar="true"

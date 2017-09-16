@@ -22,6 +22,8 @@ public class APIConstans {
     public static final String UPCOMING = "/discover/movie?sort_by=popularity.desc&primary_release_year="
                                                     + (NOW.get(Calendar.YEAR)+1);
 
+    public static final String FILM_BY_CATEGORY = "/discover/movie?sort_by=popularity.desc&primary_release_year="+NOW.get(Calendar.YEAR)+"&with_genres=";
+
     public static final String ONGOING = "/discover/movie?sort_by=popularity.desc&certification=R&primary_release_date.gte="+getDate("first")+"&primary_release_date.lte="+getDate("last");
 
     public static String getDate(String type){
