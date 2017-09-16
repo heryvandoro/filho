@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:measureWithLargestChild="false"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <include
@@ -10,10 +10,15 @@
         layout="@layout/layout_toolbar" />
 
     <ScrollView
+        android:id="@+id/filmDetail"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/insertComment"
+        android:layout_below="@id/toolbar"
         android:fillViewport="true"
-        android:padding="15dp">
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -54,6 +59,16 @@
                 android:layout_marginTop="10dp"
                 android:textColor="@color/textColorPrimary" />
 
+            <TextView
+                android:id="@+id/commentTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="10dp"
+                android:text="Comments"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="18sp" />
+
             <LinearLayout
                 android:id="@+id/listComment"
                 android:layout_width="match_parent"
@@ -61,4 +76,31 @@
                 android:orientation="vertical" />
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/insertComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/insertCommentText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="5"
+            android:gravity="top|left"
+            android:textColor="@color/textColorPrimary"
+            android:scrollHorizontally="false" />
+
+        <Button
+            android:id="@+id/buttonSend"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/windowBackground"
+            android:text="Send"
+            android:textColor="@color/textColorPrimary" />
+    </LinearLayout>
+
+</RelativeLayout>

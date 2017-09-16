@@ -20,22 +20,14 @@ public class Comment extends Model{
         super(context);
     }
 
+    @Override
+    public void insert(ContentValues cv) {
+        db.insert(TABLE, null, cv);
+    }
+
     public void createTable() {
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE+"");
+        //db.execSQL("DROP TABLE IF EXISTS "+TABLE+"");
         db.execSQL("CREATE TABLE if not exists "+TABLE+ " ("+COLUMN_PK+" INTEGER PRIMARY KEY AUTOINCREMENT, "+COLUMN_FILM_ID+ " INT ," + COLUMN_TEXT+ " TEXT);");
-
-        ContentValues con = new ContentValues();
-        con.put(COLUMN_FILM_ID, 324852);
-        con.put(COLUMN_TEXT, "Coba comment 1");
-        db.insert(TABLE, null, con);
-
-        con.put(COLUMN_FILM_ID, 324852);
-        con.put(COLUMN_TEXT, "Coba comment 2");
-        db.insert(TABLE, null, con);
-
-        con.put(COLUMN_FILM_ID, 324852);
-        con.put(COLUMN_TEXT, "Coba comment 3");
-        db.insert(TABLE, null, con);
     }
 
     public Cursor index() {

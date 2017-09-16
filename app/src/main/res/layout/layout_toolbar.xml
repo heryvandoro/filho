@@ -3,6 +3,8 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:background="@color/colorPrimary"
+    android:layout_alignParentTop="true"
+    app:layout_collapseMode="pin"
     app:titleTextColor="@color/textColorPrimary"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:theme="@style/ThemeOverlay.AppCompat">

@@ -1,5 +1,6 @@
 package com.filho.filho.model;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
@@ -23,6 +24,8 @@ public abstract class Model extends SQLiteOpenHelper{
     }
 
     public abstract void createTable();
+
+    public abstract void insert(ContentValues cv);
 
     @Override
     public void onCreate(SQLiteDatabase db) {

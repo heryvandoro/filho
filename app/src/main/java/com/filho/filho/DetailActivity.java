@@ -1,5 +1,6 @@
 package com.filho.filho;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -24,7 +27,7 @@ import org.json.JSONObject;
 
 import java.util.Vector;
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity implements View.OnClickListener{
 
     int FILM_ID;
     Film film;
@@ -35,8 +38,13 @@ public class DetailActivity extends AppCompatActivity {
     Vector<JSONObject> genres;
     LinearLayout listComment;
 
+    EditText commentText;
+    Button commentSend;
+
     private Comment model;
     Cursor cursor;
+
+    ContentValues con;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +74,11 @@ public class DetailActivity extends AppCompatActivity {
         filmOverview = (TextView) findViewById(R.id.filmOverview);
         filmRating = (TextView) findViewById(R.id.filmRating);
         listComment = (LinearLayout) findViewById(R.id.listComment);
+        commentText = (EditText) findViewById(R.id.insertCommentText);
+        commentSend = (Button) findViewById(R.id.buttonSend);
+        commentSend.setOnClickListener(this);
 
+        con = new ContentValues();
         model = new Comment(this);
 
         //onCreate bugged, not called automatically (?)
@@ -97,6 +109,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     public void loadComment(){
+        listComment.removeAllViews();
         cursor = model.show(film.getFilmID());
 
         String[] displayed = new String[]{model.COLUMN_TEXT};
@@ -105,11 +118,21 @@ public class DetailActivity extends AppCompatActivity {
         //SimpleCursorAdapter's constructor deprecated, replace it with 0 flags
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.comment, cursor, displayed, layoutDisplay, 0);
 
-
         listComment = (LinearLayout) findViewById(R.id.listComment);
         for (int i = 0; i < adapter.getCount(); i++){
-            Log.w("jumlahc", adapter.getCount()+"");
             listComment.addView(adapter.getView(i, null, listComment));
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.buttonSend :
+                con.put(model.COLUMN_FILM_ID, film.getFilmID());
+                con.put(model.COLUMN_TEXT, commentText.getText().toString());
+                model.insert(con);
+                commentText.setText("");
+                loadComment();
         }
     }
 }
