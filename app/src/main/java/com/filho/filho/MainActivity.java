@@ -1,6 +1,7 @@
 package com.filho.filho;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.StrictMode;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -116,7 +117,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         Intent i = null;
         if(item.getGroupId()==0 && item.getItemId()==1){
             i = new Intent(this, HelpActivity.class);
-        }else{
+        } else if(item.getGroupId()==0 && item.getItemId()==0){
+            i = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://www.mahirkoding.com/"));
+        } else{
             i = new Intent(this, CategoryActivity.class);
             //Toast.makeText(this, item.getItemId()+"", Toast.LENGTH_SHORT).show();
             i.putExtra("category_id", item.getItemId());
