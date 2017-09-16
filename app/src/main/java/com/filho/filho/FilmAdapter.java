@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 import com.filho.filho.helper.ImageDownloader;
 
 import java.util.Vector;
@@ -50,7 +52,8 @@ public class FilmAdapter extends ArrayAdapter<Film> {
             holder.filmTitle.setText(film.getFilmTitle());
             holder.filmDate.setText(film.getFilmDate("d MMM yyyy"));
 
-            new ImageDownloader(holder.filmCover).execute(film.getFilmCoverURL(300));
+            //new ImageDownloader(holder.filmCover).execute(film.getFilmCoverURL(300));
+            Glide.with(view.getRootView()).load(film.getFilmCoverURL(300)).into(holder.filmCover);
         }
         return view;
     }

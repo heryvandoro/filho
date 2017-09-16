@@ -17,6 +17,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.filho.filho.helper.APIConstans;
 import com.filho.filho.helper.ImageDownloader;
 import com.filho.filho.helper.JSONParser;
@@ -95,7 +96,8 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         filmOverview.setText(film.getFilmOverview());
         filmRating.setText("Rating : " + film.getFilmRating()+"");
 
-        new ImageDownloader(filmCover).execute(film.getFilmCoverURL(500));
+        //new ImageDownloader(filmCover).execute(film.getFilmCoverURL(500));
+        Glide.with(this).load(film.getFilmCoverURL(500)).into(filmCover);
 
         String filmGenreData = "";
 
