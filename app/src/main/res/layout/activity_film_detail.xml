@@ -12,6 +12,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
         android:padding="15dp">
 
         <LinearLayout
@@ -53,10 +54,11 @@
                 android:layout_marginTop="10dp"
                 android:textColor="@color/textColorPrimary" />
 
-            <ListView
+            <LinearLayout
                 android:id="@+id/listComment"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
