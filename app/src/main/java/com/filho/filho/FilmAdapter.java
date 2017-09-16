@@ -50,7 +50,7 @@ public class FilmAdapter extends ArrayAdapter<Film> {
 
         if(film!=null){
             holder.filmTitle.setText(film.getFilmTitle());
-            holder.filmDate.setText(film.getFilmDate());
+            holder.filmDate.setText(film.getFilmDate("d MMM yyyy"));
 
             new ImageDownloader(holder.filmCover).execute(film.getFilmCoverURL(300));
         }
