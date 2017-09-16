@@ -41,6 +41,7 @@ public class FilmAdapter extends ArrayAdapter<Film> {
             holder.filmTitle = (TextView) view.findViewById(R.id.filmTitle);
             holder.filmDate = (TextView) view.findViewById(R.id.filmDate);
             holder.filmCover = (ImageView) view.findViewById(R.id.filmCover);
+            holder.filmRating = (TextView) view.findViewById(R.id.filmRating);
 
             view.setTag(holder);
         }else{
@@ -51,6 +52,7 @@ public class FilmAdapter extends ArrayAdapter<Film> {
         if(film!=null){
             holder.filmTitle.setText(film.getFilmTitle());
             holder.filmDate.setText(film.getFilmDate("d MMM yyyy"));
+            holder.filmRating.setText("Rating : "+film.getFilmRating());
 
             //new ImageDownloader(holder.filmCover).execute(film.getFilmCoverURL(300));
             Glide.with(view.getRootView()).load(film.getFilmCoverURL(300)).into(holder.filmCover);
@@ -61,6 +63,7 @@ public class FilmAdapter extends ArrayAdapter<Film> {
     public class ViewHolder{
         TextView filmTitle;
         TextView filmDate;
+        TextView filmRating;
         ImageView filmCover;
     }
 }

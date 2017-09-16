@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -135,6 +136,17 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                 model.insert(con);
                 commentText.setText("");
                 loadComment();
+                break;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case android.R.id.home :
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

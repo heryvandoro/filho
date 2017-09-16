@@ -23,6 +23,7 @@
             android:parentActivityName=".MainActivity"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden"></activity>
         <activity android:name=".CategoryActivity"></activity>
+        <activity android:name=".HelpActivity"></activity>
     </application>
 
 </manifest>

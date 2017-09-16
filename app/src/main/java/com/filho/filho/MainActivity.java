@@ -78,8 +78,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     public void managesMenu(NavigationView navigationView){
         Menu mainMenu = navigationView.getMenu();
 
-        mainMenu.add(0,Menu.NONE,Menu.NONE,"All Movies");
-        mainMenu.add(0,Menu.NONE,Menu.NONE,"Help");
+        mainMenu.add(0,0,Menu.NONE,"About").setOnMenuItemClickListener(this);
+        mainMenu.add(0,1,Menu.NONE,"Help").setOnMenuItemClickListener(this);
 
         Menu subMenu = mainMenu.addSubMenu("Categories");
 
@@ -113,10 +113,15 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         drawerLayout.closeDrawers();
-        Intent i = new Intent(this, CategoryActivity.class);
-        //Toast.makeText(this, item.getItemId()+"", Toast.LENGTH_SHORT).show();
-        i.putExtra("category_id", item.getItemId());
-        i.putExtra("category_name", item.getTitle());
+        Intent i = null;
+        if(item.getGroupId()==0 && item.getItemId()==1){
+            i = new Intent(this, HelpActivity.class);
+        }else{
+            i = new Intent(this, CategoryActivity.class);
+            //Toast.makeText(this, item.getItemId()+"", Toast.LENGTH_SHORT).show();
+            i.putExtra("category_id", item.getItemId());
+            i.putExtra("category_name", item.getTitle());
+        }
         startActivity(i);
         return false;
     }
