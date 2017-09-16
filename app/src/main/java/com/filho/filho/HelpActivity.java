@@ -1,9 +1,14 @@
 package com.filho.filho;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.telephony.SmsManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +27,9 @@ public class HelpActivity extends AppCompatActivity implements View.OnClickListe
     TextView helpIntro;
 
     Toolbar toolbar;
+    String permission = Manifest.permission.SEND_SMS;
+
+    final String contactMe = "YOUR PHONE NUMBER HERE";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,8 +48,10 @@ public class HelpActivity extends AppCompatActivity implements View.OnClickListe
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         question = (EditText) findViewById(R.id.question);
-        sendBtn = (Button) findViewById(R.id.buttonSend);
+        sendBtn = (Button) findViewById(R.id.sendBtn);
         helpIntro = (TextView) findViewById(R.id.helpText);
+
+        sendBtn.setOnClickListener(this);
 
         helpIntro.setText("If you have any question or found some bugs in this application, " +
                     "please send me a messages by email at vandorohery99@gmail.com. " +
@@ -52,7 +62,21 @@ public class HelpActivity extends AppCompatActivity implements View.OnClickListe
         if(question.getText().toString().isEmpty()){
             Toast.makeText(this, "Please insert a question!", Toast.LENGTH_SHORT).show();
         }else{
-            Toast.makeText(this, "berangkatt", Toast.LENGTH_SHORT).show();
+            if (ContextCompat.checkSelfPermission(getApplicationContext(), permission) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[] {permission}, 1);
+                Toast.makeText(this, "No Permission!", Toast.LENGTH_SHORT).show();
+            }else{
+               try{
+                   String q = question.getText().toString();
+
+                   SmsManager sms = SmsManager.getDefault();
+                   sms.sendTextMessage(contactMe, null, q, null, null);
+                   Toast.makeText(this, "Success!", Toast.LENGTH_SHORT).show();
+                   finish();
+               }catch (Exception e){
+                   e.printStackTrace();
+               }
+            }
             question.setText("");
         }
     }
